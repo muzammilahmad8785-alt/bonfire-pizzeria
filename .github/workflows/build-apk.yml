@@ -33,6 +33,8 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: ''
 
       - name: Install Android SDK
         run: |
@@ -40,16 +42,22 @@ jobs:
           sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
 
       - name: Remove Termux AAPT2 override
-        run: sed -i '/android.aapt2FromMavenOverride/d' android/gradle.properties
+        run: |
+          if [ -f android/gradle.properties ]; then
+            sed -i '/android.aapt2FromMavenOverride/d' android/gradle.properties
+          fi
 
       - name: Set Android SDK versions
         run: |
           sed -i 's/compileSdkVersion = 34/compileSdkVersion = 36/' android/variables.gradle
           sed -i 's/targetSdkVersion = 34/targetSdkVersion = 36/' android/variables.gradle
 
+      - name: Make Gradle executable
+        run: chmod +x android/gradlew
+
       - name: Build APK
         working-directory: android
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
