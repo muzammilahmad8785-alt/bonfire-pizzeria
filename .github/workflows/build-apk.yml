@@ -38,7 +38,7 @@ jobs:
 
       - name: Install Android SDK
         run: |
-          yes | sdkmanager --licenses
+          yes | sdkmanager --licenses || true
           sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
 
       - name: Remove Termux AAPT2 override
@@ -51,6 +51,9 @@ jobs:
         run: |
           sed -i 's/compileSdkVersion = 34/compileSdkVersion = 36/' android/variables.gradle
           sed -i 's/targetSdkVersion = 34/targetSdkVersion = 36/' android/variables.gradle
+
+      - name: Sync Capacitor Android
+        run: npx cap sync android
 
       - name: Make Gradle executable
         run: chmod +x android/gradlew
