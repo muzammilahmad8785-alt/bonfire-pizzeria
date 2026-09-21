@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -26,7 +26,7 @@ jobs:
         run: npm run build
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
@@ -35,7 +35,9 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK
-        run: sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
 
       - name: Remove Termux AAPT2 override
         run: sed -i '/android.aapt2FromMavenOverride/d' android/gradle.properties
