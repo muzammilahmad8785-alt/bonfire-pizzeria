@@ -1,0 +1,12 @@
+{
+  "projectId": "inbound-pathway-spthm",
+  "appId": "1:64138564324:web:e8234ec2627b2c937852f1",
+  "apiKey": "AIzaSyDtau0bnQIH27sgD-cPnwEow4yxZf4qWAs",
+  "authDomain": "inbound-pathway-spthm.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-0bb3d913-9b5a-49b3-80ad-7e0bb737fda7",
+  "storageBucket": "inbound-pathway-spthm.firebasestorage.app",
+  "messagingSenderId": "64138564324",
+  "measurementId": "",
+  "oAuthClientId": "64138564324-msbr49vhi5o6kc1ptc8cdg0gpv7p0aav.apps.googleusercontent.com",
+  "recaptchaSiteKey": ""
+}

@@ -1,0 +1,175 @@
+{
+  "entities": {
+    "product": {
+      "title": "Product",
+      "description": "Menu product item such as pizza, burger, sides, or drink",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string" },
+        "image": { "type": "string" },
+        "popular": { "type": "boolean" },
+        "sizes": { "type": "array" }
+      },
+      "required": ["id", "name", "price", "category"]
+    },
+    "category": {
+      "title": "Category",
+      "description": "Food menu category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "icon": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "name"]
+    },
+    "deal": {
+      "title": "Deal",
+      "description": "Combo meal or promotional deal",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "badge": { "type": "string" },
+        "image": { "type": "string" }
+      },
+      "required": ["id", "title", "price"]
+    },
+    "banner": {
+      "title": "Banner",
+      "description": "Homepage promotional banner",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "badge": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "title"]
+    },
+    "setting": {
+      "title": "RestaurantSetting",
+      "description": "Store configuration and operational timing",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "tagline": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "address": { "type": "string" },
+        "deliveryFee": { "type": "number" },
+        "freeDeliveryThreshold": { "type": "number" }
+      },
+      "required": ["name", "phone", "whatsapp"]
+    },
+    "order": {
+      "title": "Order",
+      "description": "Customer food order",
+      "type": "object",
+      "properties": {
+        "orderId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "phone": { "type": "string" },
+        "items": { "type": "array" },
+        "total": { "type": "number" },
+        "deliveryAddress": { "type": "string" },
+        "orderType": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["orderId", "customerName", "phone", "total", "status"]
+    },
+    "user": {
+      "title": "UserProfile",
+      "description": "Registered customer or administrator profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" }
+      },
+      "required": ["uid", "name", "email", "role"]
+    },
+    "homepageOffer": {
+      "title": "HomepageOffer",
+      "description": "Media-based promotional offer slide with image/video support",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "mediaType": { "type": "string" },
+        "mediaUrl": { "type": "string" },
+        "fallbackImageUrl": { "type": "string" },
+        "ctaText": { "type": "string" },
+        "ctaLink": { "type": "string" },
+        "promoCode": { "type": "string" },
+        "displayOrder": { "type": "number" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["title", "mediaType", "mediaUrl", "ctaText", "ctaLink"]
+    },
+    "media": {
+      "title": "MediaItem",
+      "description": "Uploaded image or video asset stored in the media catalog",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "url": { "type": "string" },
+        "type": { "type": "string" },
+        "size": { "type": "number" },
+        "category": { "type": "string" }
+      },
+      "required": ["id", "name", "url", "type"]
+    }
+  },
+  "firestore": {
+    "/media/{mediaId}": {
+      "schema": { "$ref": "#/entities/media" },
+      "description": "Media library assets"
+    },
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/product" },
+      "description": "Restaurant menu products"
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/category" },
+      "description": "Menu categories"
+    },
+    "/deals/{dealId}": {
+      "schema": { "$ref": "#/entities/deal" },
+      "description": "Promotional deals and combos"
+    },
+    "/banners/{bannerId}": {
+      "schema": { "$ref": "#/entities/banner" },
+      "description": "Homepage promotional banners"
+    },
+    "/homepageOffers/{offerId}": {
+      "schema": { "$ref": "#/entities/homepageOffer" },
+      "description": "Media offer carousel slides"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/setting" },
+      "description": "Global restaurant settings"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/order" },
+      "description": "Customer orders"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/user" },
+      "description": "Customer and admin profiles"
+    }
+  }
+}

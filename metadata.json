@@ -1,0 +1,6 @@
+{
+  "name": "Bonfire Pizzeria Multan",
+  "description": "Order fresh pizza, burgers, wings, fries and deals from Bonfire Pizzeria in Multan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
